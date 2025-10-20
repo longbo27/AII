@@ -1,0 +1,12 @@
+symbols:
+  - SPY
+  - QQQ
+  - IWM
+  - XLK
+  - XLE
+  - XLV
+  - TLT
+  - SHY
+cash_symbol: BIL
+rebalance: weekly
+equal_weight: true

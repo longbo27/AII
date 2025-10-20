@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  backtest:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ../data:/app/data
+      - ../reports:/app/reports
+    command: ["python3", "scripts/run_backtest.py"]

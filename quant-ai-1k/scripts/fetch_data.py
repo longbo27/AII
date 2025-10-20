@@ -8,6 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Iterable
 
+import pandas as pd
 import yaml
 from loguru import logger
 import yfinance as yf
@@ -32,10 +33,13 @@ def download_symbol(symbol: str, start: datetime, end: datetime | None) -> None:
     if df.empty:
         logger.warning("No data returned for symbol {}", symbol)
         return
+    df.index = pd.to_datetime(df.index, utc=False)
+    if getattr(df.index, "tz", None) is not None:
+        df.index = df.index.tz_localize(None)
     df.index.name = "Date"
     output_path = DATA_DIR / f"{symbol}.csv"
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(output_path)
+    df.reset_index().to_csv(output_path, index=False, date_format="%Y-%m-%d")
     logger.info("Saved {} rows to {}", len(df), output_path)
 
 

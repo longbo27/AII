@@ -31,10 +31,22 @@ def load_price_data(symbols: list[str]) -> dict[str, pd.DataFrame]:
         if not path.exists():
             logger.warning("Data file missing for symbol {} at {}", symbol, path)
             continue
-        df = pd.read_csv(path, index_col=0, parse_dates=True)
+        df = pd.read_csv(path, parse_dates=["Date"])
         if df.empty:
             logger.warning("Data frame empty for symbol {}", symbol)
             continue
+        df = df.set_index("Date").sort_index()
+        for column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors="coerce")
+        if not df.empty:
+            start_date = df.index.min()
+            end_date = df.index.max()
+            logger.info(
+                "Loaded data for {} from {} to {}",
+                symbol,
+                start_date.strftime("%Y-%m-%d"),
+                end_date.strftime("%Y-%m-%d"),
+            )
         price_data[symbol] = df
     if not price_data:
         raise FileNotFoundError("No price data available. Please run scripts/fetch_data.py first.")

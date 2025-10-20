@@ -1,0 +1,8 @@
+start_date: "2016-01-01"
+end_date: null
+initial_cash: 1000.0
+commission_per_trade: 0.005  # USD per share placeholder
+slippage_bps: 1.0
+rebalance: weekly  # options: weekly, monthly, daily
+t_plus_one: true
+walk_forward: false

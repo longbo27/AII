@@ -1,8 +1,20 @@
+start: "2016-01-01"
+end: null
+cash: 100000.0
+include_costs: true
+apply_t_plus_one: true
+rebalance_freq: "weekly"  # options: daily, weekly, monthly
+walk_forward:
+  enabled: false
+  window_train_days: 504
+  window_test_days: 126
+  step_days: 21
+
+# D0 compatibility keys (engine still relies on these names)
 start_date: "2016-01-01"
 end_date: null
-initial_cash: 1000.0
+initial_cash: 100000.0
 commission_per_trade: 0.005  # USD per share placeholder
-slippage_bps: 1.0
+slippage_bps: 10.0
 rebalance: weekly  # options: weekly, monthly, daily
 t_plus_one: true
-walk_forward: false

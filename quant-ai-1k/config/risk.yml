@@ -1,6 +1,18 @@
-max_drawdown_hard: 0.50
-max_drawdown_soft: 0.25
+max_drawdown_hard: -0.50
+max_drawdown_soft: -0.25
+position_max_gross: 1.0
+position_max_per_asset: 0.20
+risk_per_trade: 0.03
+daily_loss_limit: -0.02
+cooldown_days_after_hit: 1
+slippage_bps: 10.0
+commission_per_share: 0.0050
+stop_mode: "atr"
+stop_atr_mult: 3.0
+takeprofit_rr: 2.0
+
+# D0 compatibility keys (engine still relies on these names)
 max_position_weight: 0.20
 max_trade_risk: 0.03
-daily_loss_cooldown: 0.05
+daily_loss_cooldown: 0.02
 cooldown_days: 1

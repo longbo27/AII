@@ -1,0 +1,6 @@
+max_drawdown_hard: 0.50
+max_drawdown_soft: 0.25
+max_position_weight: 0.20
+max_trade_risk: 0.03
+daily_loss_cooldown: 0.05
+cooldown_days: 1
